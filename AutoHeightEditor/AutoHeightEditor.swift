@@ -42,6 +42,16 @@ public struct AutoHeightEditor: View {
         self.uiFont = UIFont.fontToUIFont(from: font)
         self.maxHeight = (maxLineCount * (uiFont.lineHeight + lineSpace)) + const.TEXTEDITOR_FRAME_HEIGHT_FREESPACE
     }
+    
+    // MARK: - View
+    public var body: some View {
+        if isEnabled.wrappedValue {
+            enabledEditor
+        } else {
+            disabledEditor
+        }
+    }
+}
 
 // MARK: - Calculate Line
 private extension AutoHeightEditor {
@@ -76,6 +86,85 @@ private extension AutoHeightEditor {
         return counter.asFloat
     }
 }
+// MARK: - Editor View
+private extension AutoHeightEditor {
+    var enabledEditor: some View {
+        VStack {
+            Text("개행 갯수 :" + self.newLineCount.description)
+            Text("자동개행 갯수 :" + self.autoLineCount.description)
+            Text("한 줄 최대길이 :" + self.maxTextWidth.description)
+            Text("현재 높이 :" + self.currentTextEditorHeight.description)
+            
+            GeometryReader { proxy in
+                ZStack {
+                    TextEditor(text: text)
+                        .autocorrectionDisabled()
+                        .autocapitalization(.none)
+                        .modifier(
+                            AutoHeightEditorLayoutModifier(
+                                font: font,
+                                color: .primary,
+                                lineSpace: lineSpace,
+                                maxHeight: currentTextEditorHeight,
+                                horizontalInset: const.TEXTEDITOR_INSET_HORIZONTAL,
+                                bottomInset: const.TEXTEDITOR_INSET_BOTTOM
+                            )
+                        )
+                    
+                    if hasBorder {
+                        RoundedRectangle(cornerRadius: const.TEXTEDITOR_STROKE_CORNER_RADIUS)
+                            .stroke()
+                            .foregroundColor(.gray)
+                    }
+                    
+                }
+                .onAppear {
+                    setTextEditorStartHeight()
+                    setMaxTextWidth(proxy: proxy)
+                }
+                .onChange(of: text.wrappedValue) { n in
+                    updateTextEditorCurrentHeight()
+                    updatePatternMatched()
+                }
+            }
+            .frame(maxHeight: currentTextEditorHeight)
+        }
+    }
+    
+    var disabledEditor: some View {
+        ZStack {
+            TextEditor(
+                text: .constant(disabledInformationText)
+            )
+            .modifier(
+                AutoHeightEditorLayoutModifier(
+                    font: font,
+                    color: .black,
+                    lineSpace: lineSpace,
+                    maxHeight: currentTextEditorHeight,
+                    horizontalInset: const.TEXTEDITOR_INSET_HORIZONTAL,
+                    bottomInset: const.TEXTEDITOR_INSET_BOTTOM
+                )
+            )
+            .disabled(true)
+            
+            if hasBorder {
+                RoundedRectangle(cornerRadius: const.TEXTEDITOR_STROKE_CORNER_RADIUS)
+                    .stroke()
+                    .foregroundColor(.gray)
+                    .background(
+                        Color.gray.opacity(0.7)
+                    )
+                    .cornerRadius(const.TEXTEDITOR_STROKE_CORNER_RADIUS)
+            }
+        }
+        .frame(maxHeight: currentTextEditorHeight)
+        .onAppear {
+            setTextEditorStartHeight()
+        }
+    }
+}
+
 private struct AutoHeightEditorLayoutModifier: ViewModifier {
     let font: Font
     let color: Color
