@@ -98,6 +98,25 @@ private extension AutoHeightEditor {
     func setMaxTextWidth(proxy: GeometryProxy) {
         maxTextWidth = proxy.size.width - (const.TEXTEDITOR_INSET_HORIZONTAL * 2 + const.TEXTEDITOR_WIDTH_HORIZONTAL_BUFFER)
     }
+    
+    /// line count를 통해 textEditor 현재 높이를 계산해서 업데이트합니다.
+    func updateTextEditorCurrentHeight() {
+        // 총 라인 갯수
+        let totalLineCount = newLineCount + autoLineCount
+        
+        // 총 라인 갯수가 maxCount 이상이면 최대 높이로 고정
+        guard totalLineCount < maxLineCount else {
+            currentTextEditorHeight = maxHeight
+            return
+        }
+        
+        // 라인 갯수로 계산한 현재 Editor 높이
+        let currentHeight = (totalLineCount * (uiFont.lineHeight + lineSpace))
+        - lineSpace + const.TEXTEDITOR_FRAME_HEIGHT_FREESPACE
+        
+        // View의 높이를 결정하는 State 변수에 계산된 현재 높이를 할당하여 뷰에 반영
+        currentTextEditorHeight = currentHeight
+    }
 }
 
 // MARK: - Editor View
