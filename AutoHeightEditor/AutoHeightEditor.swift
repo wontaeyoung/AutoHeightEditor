@@ -27,5 +27,21 @@ public struct AutoHeightEditor: View {
         self.isEnabled = isEnabled
         self.hasBorder = hasBorder
         self.disabledInformationText = disabledInformationText
+private struct AutoHeightEditorLayoutModifier: ViewModifier {
+    let font: Font
+    let color: Color
+    let lineSpace: CGFloat
+    let maxHeight: CGFloat
+    let horizontalInset: CGFloat
+    let bottomInset: CGFloat
+    
+    func body(content: Content) -> some View {
+        content
+            .font(font)
+            .foregroundColor(color)
+            .lineSpacing(lineSpace)
+            .frame(maxHeight: maxHeight)
+            .padding(.horizontal, horizontalInset)
+            .padding(.bottom, bottomInset)
     }
 }
