@@ -86,6 +86,20 @@ private extension AutoHeightEditor {
         return counter.asFloat
     }
 }
+
+// MARK: - Calculate Width / Height
+private extension AutoHeightEditor {
+    /// textEditor 시작 높이를 설정합니다.
+    func setTextEditorStartHeight() {
+        currentTextEditorHeight = uiFont.lineHeight + const.TEXTEDITOR_FRAME_HEIGHT_FREESPACE
+    }
+    
+    /// text가 가질 수 있는 최대 길이를 설정합니다.
+    func setMaxTextWidth(proxy: GeometryProxy) {
+        maxTextWidth = proxy.size.width - (const.TEXTEDITOR_INSET_HORIZONTAL * 2 + const.TEXTEDITOR_WIDTH_HORIZONTAL_BUFFER)
+    }
+}
+
 // MARK: - Editor View
 private extension AutoHeightEditor {
     var enabledEditor: some View {
