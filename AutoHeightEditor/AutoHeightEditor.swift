@@ -42,6 +42,40 @@ public struct AutoHeightEditor: View {
         self.uiFont = UIFont.fontToUIFont(from: font)
         self.maxHeight = (maxLineCount * (uiFont.lineHeight + lineSpace)) + const.TEXTEDITOR_FRAME_HEIGHT_FREESPACE
     }
+
+// MARK: - Calculate Line
+private extension AutoHeightEditor {
+    /// 현재 text에 개행문자에 의한 라인 갯수가 몇 줄인지 계산합니다.
+    var newLineCount: CGFloat {
+        let currentText: String = text.wrappedValue
+        let currentLineCount: Int = currentText
+            .filter { $0 == "\n" }
+            .count + 1
+        let newLineCount: CGFloat = currentLineCount > maxLineCount.asInt
+        ? maxLineCount
+        : currentLineCount.asFloat
+        
+        return newLineCount
+    }
+    
+    /// 개행 문자 기준으로 텍스트를 분리하고, 각 텍스트 길이가 Editor 길이를 초과하는지 체크하여 필요한 줄바꿈 수를 계산합니다.
+    var autoLineCount: CGFloat {
+        var counter: Int = 0
+        text
+            .wrappedValue
+            .components(separatedBy: "\n")
+            .forEach { line in
+                let label = UILabel()
+                label.font = .fontToUIFont(from: font)
+                label.text = line
+                label.sizeToFit()
+                let currentTextWidth = label.frame.width
+                counter += (currentTextWidth / maxTextWidth).asInt
+            }
+        
+        return counter.asFloat
+    }
+}
 private struct AutoHeightEditorLayoutModifier: ViewModifier {
     let font: Font
     let color: Color
