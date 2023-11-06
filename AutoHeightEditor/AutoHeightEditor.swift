@@ -10,6 +10,15 @@ public struct AutoHeightEditor: View {
     private let isEnabled: Binding<Bool>
     private let hasBorder: Bool
     private let disabledInformationText: String
+    
+    // MARK: Initializer에서 계산을 통해 결정되는 프로퍼티
+    private let maxLineCount: CGFloat
+    private let uiFont: UIFont
+    private let maxHeight: CGFloat
+    
+    @State private var currentTextEditorHeight: CGFloat = 0
+    @State private var maxTextWidth: CGFloat = 0
+    
     // MARK: - Initializer
     /// 파라미터 font = .body, lineSpace = 2 기본값 지정
     public init (
@@ -27,6 +36,12 @@ public struct AutoHeightEditor: View {
         self.isEnabled = isEnabled
         self.hasBorder = hasBorder
         self.disabledInformationText = disabledInformationText
+        
+        // MARK: Calculated
+        self.maxLineCount = const.TEXTEDITOR_MAX_LINE_COUNT.asFloat
+        self.uiFont = UIFont.fontToUIFont(from: font)
+        self.maxHeight = (maxLineCount * (uiFont.lineHeight + lineSpace)) + const.TEXTEDITOR_FRAME_HEIGHT_FREESPACE
+    }
 private struct AutoHeightEditorLayoutModifier: ViewModifier {
     let font: Font
     let color: Color
