@@ -11,6 +11,7 @@ struct ContentView: View {
             AutoHeightEditor(
                 text: $text,
                 lineSpace: 10,
+                maxLine: 3,
                 isEnabled: $isEnabled,
                 hasBorder: true,
                 disabledInformationText: "밴입니다.",
@@ -23,6 +24,7 @@ struct ContentView: View {
                 
             }
         }
+        .padding(20)
     }
 }
 

@@ -45,6 +45,7 @@ public struct AutoHeightEditor: View {
         text: Binding<String>,
         font: Font = .body,
         lineSpace: CGFloat = 2,
+        maxLine: Int,
         isEnabled: Binding<Bool>,
         hasBorder: Bool,
         disabledInformationText: String,
@@ -64,7 +65,7 @@ public struct AutoHeightEditor: View {
         self.isPatternMatched = isPatternMatched
         
         // MARK: Calculated
-        self.maxLineCount = const.TEXTEDITOR_MAX_LINE_COUNT.asFloat
+        self.maxLineCount = (maxLine < 1 ? 1 : maxLine).asFloat
         self.uiFont = UIFont.fontToUIFont(from: font)
         self.maxHeight = (maxLineCount * (uiFont.lineHeight + lineSpace)) + const.TEXTEDITOR_FRAME_HEIGHT_FREESPACE
     }
