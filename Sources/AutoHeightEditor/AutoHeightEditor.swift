@@ -1,6 +1,11 @@
 import SwiftUI
 
 public struct AutoHeightEditor: View {
+    public enum RegExpUse {
+        case use(pattern: String, isMatched: Binding<Bool>)
+        case none
+    }
+    
     // MARK: - Property
     private let const = TextEditorConst.self
     
