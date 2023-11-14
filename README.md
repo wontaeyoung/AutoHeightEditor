@@ -11,9 +11,9 @@
 
 # 제작 배경
 
-이 라이브러리는 제가 프로젝트에 필요해서 직접 구현하게 된 커스텀 텍스트에디터를 라이브러리에 형태로 수정해서 공유하게 되었습니다.
+이 라이브러리는 제가 프로젝트에 필요해서 직접 구현하게 된 커스텀 `TextEditor`입니다.
 
-제가 진행하고 있는 프로젝트에서 동적으로 높이가 조절되는 입력 인터페이스가 요구사항이었는데, iOS 16부터는 `TextField`의 `axis` 파라미터를 통해 Dynamic Height로 동작하는 입력 인터페이스를 사용할 수 있습니다.
+제가 진행하고 있는 프로젝트에서 동적으로 높이가 조절되는 입력 인터페이스가 요구사항이었는데, iOS 16부터는 `TextField`의 `axis` 파라미터를 통해 Dynamic Height로 동작하는 입력 인터페이스를 쉽게 사용할 수 있습니다.
 
 하지만 프로젝트 최소 지원버전이 iOS 15.0+로 결정되었고, 여러 줄의 텍스트 입력을 받기 위해서는 `TextEditor`를 사용해야했습니다.
 
@@ -61,17 +61,95 @@
 
 # 사용 예시
 
-우선 기본적인 동작을 확인해보기 위해 `AutoHeightEditor`를 초기화 하겠습니다.
+우선 기본적인 동작을 확인해보기 위해 `AutoHeightEditor`를 초기화 해보겠습니다.
 
 ```swift
 AutoHeightEditor(
     text: $text,
     maxLine: 3,
-    isEnabled: $isEnabled,
     hasBorder: true,
-    disabledInformationText: "This editor has been disabled",
+    isEnabled: $isEnabled,
+    disabledPlaceholder: "This editor has been disabled",
     regExpUse: .none)
 ```
 
 <img width="300" src="https://github.com/wontaeyoung/AutoHeightEditor/assets/45925685/4465d282-3bba-42c3-bd4f-45e8bfdb695f">
 
+<br>
+
+처음에는 1줄 높이로 시작하고, 입력된 텍스트에 따라 최대 라인까지 높이가 동적으로 늘어납니다.
+
+## 파라미터 리스트
+
+```swift
+public init (
+    text: Binding<String>,
+    font: Font = .body,
+    lineSpace: CGFloat = 2,
+    maxLine: Int,
+    hasBorder: Bool,
+    isEnabled: Binding<Bool>,
+    disabledPlaceholder: String,
+    regExpUse: RegExpUse
+)
+```
+
+<br>
+
+`text`
+
+TextEditor에 바인딩되는 입력 텍스트 문자열입니다. 외부에서 바인딩으로 주입해서 사용합니다.
+
+<br>
+
+`font`
+
+텍스트에 적용할 폰트 타입입니다. default value로 `body`가 주입되고, 원하는 다른 폰트가 있다면 주입해서 사용 가능합니다.
+
+<br>
+
+`lineSpace`
+
+텍스트 라인 사이에 들어가는 행 간격입니다. default value로 2가 주입되고, 원하는 다른 값이 있다면 주입해서 사용 가능합니다.
+
+<br>
+
+`maxLine`
+TextEditor의 높이가 증가하는 상한선 라인 수입니다. 입력 라인이 늘어날 때 maxLine까지 에디터 높이가 증가하고, 그 이후로는 늘어나지 않습니다.
+
+<br>
+
+`hasBorder`
+
+기본으로 제공되는 Stroke의 사용 여부를 결정합니다. 기본 Stroke는 Gray 컬러에 20의 CornerRadius 값을 가지고 있습니다.
+
+<br>
+
+`isEnabled`
+
+TextEditor의 활성화 여부를 결정합니다. 외부에서 바인딩으로 주입하고, 조절해서 사용합니다.
+
+<br>
+
+`disabledPlaceholder`
+
+TextEditor가 비활성화 되어있을 때, 사용자에게 안내하기 위한 문구입니다.
+
+<br>
+
+`regRxpUse`
+
+```swift
+public enum RegExpUse {
+    case use(pattern: String, isMatched: Binding<Bool>)
+    case none
+}
+```
+
+정규식 매치 여부를 사용하는지를 결정하는 타입입니다. 
+
+사용하지 않으면 `none`, 사용한다면 `use`를 전달합니다. 
+
+`pattern`은 매칭에 사용할 정규식 패턴, isMatched는 외부에서 주입하고 활용할 바인딩 값입니다. 
+
+텍스트가 업데이트 될 때마다 정규식을 검사해서 isMatched에 전달된 바인딩 변수를 자동으로 업데이트합니다.
