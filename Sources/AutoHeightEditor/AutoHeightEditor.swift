@@ -15,6 +15,7 @@ public struct AutoHeightEditor: View {
     private let isEnabled: Binding<Bool>
     private let hasBorder: Bool
     private let disabledInformationText: String
+    private let regExpUse: RegExpUse
     
     // MARK: Initializer에서 계산을 통해 결정되는 프로퍼티
     private let maxLineCount: CGFloat
@@ -34,6 +35,7 @@ public struct AutoHeightEditor: View {
         isEnabled: Binding<Bool>,
         hasBorder: Bool,
         disabledInformationText: String,
+        regExpUse: RegExpUse
     ) {
         // MARK: Required
         self.text = text
@@ -42,6 +44,7 @@ public struct AutoHeightEditor: View {
         self.isEnabled = isEnabled
         self.hasBorder = hasBorder
         self.disabledInformationText = disabledInformationText
+        self.regExpUse = regExpUse
         
         // MARK: Calculated
         self.maxLineCount = (maxLine < 1 ? 1 : maxLine).asFloat
