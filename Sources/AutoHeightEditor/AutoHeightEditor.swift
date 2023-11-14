@@ -126,9 +126,37 @@ private extension AutoHeightEditor {
         // View의 높이를 결정하는 State 변수에 계산된 현재 높이를 할당하여 뷰에 반영
         currentTextEditorHeight = currentHeight
     }
+}
+
+// MARK: - Regular Expression
+private extension AutoHeightEditor {
+    /// 정규식 프로퍼티와 현재 텍스트가 일치하는지 제공하는 인터페이스 프로퍼티
+    private var isPatternMatched: Bool {
+        switch regExpUse {
+        case .use(let pattern, _):
+            guard text.wrappedValue.isEmpty == false else {
+                return false
+            }
+            
+            let isMathed: Bool = text.wrappedValue.range(
+                of: pattern,
+                options: .regularExpression) != nil
+            
+            return isMathed
+            
+        case .none:
+            return true
+        }
+    }
     
     /// 바인딩 되어있는 isPatternMatched에 정규식 패턴 매치 여부를 업데이트합니다.
     func updatePatternMatched() {
+        switch regExpUse {
+        case .use(_, let isMatched):
+            isMatched.wrappedValue = self.isPatternMatched
+            
+        case .none:
+            break
         }
     }
 }
