@@ -98,7 +98,7 @@ public init (
 
 `text`
 
-TextEditor에 바인딩되는 입력 텍스트 문자열입니다. 외부에서 바인딩으로 주입해서 사용합니다.
+에디터에 바인딩되는 입력 텍스트 문자열입니다. 외부에서 바인딩으로 주입해서 사용합니다.
 
 <br>
 
@@ -115,29 +115,30 @@ TextEditor에 바인딩되는 입력 텍스트 문자열입니다. 외부에서 
 <br>
 
 `maxLine`
-TextEditor의 높이가 증가하는 상한선 라인 수입니다. 입력 라인이 늘어날 때 maxLine까지 에디터 높이가 증가하고, 그 이후로는 늘어나지 않습니다.
+
+에디터의 높이가 증가하는 상한선 라인 수입니다. 입력 라인이 늘어날 때 `maxLine`까지 에디터 높이가 증가하고, 그 이후로는 늘어나지 않습니다.
 
 <br>
 
 `hasBorder`
 
-기본으로 제공되는 Stroke의 사용 여부를 결정합니다. 기본 Stroke는 Gray 컬러에 20의 CornerRadius 값을 가지고 있습니다.
+기본으로 제공되는 `Stroke`의 사용 여부를 결정합니다. 기본 `Stroke`는 Gray 컬러에 20의 CornerRadius 값을 가지고 있습니다.
 
 <br>
 
 `isEnabled`
 
-TextEditor의 활성화 여부를 결정합니다. 외부에서 바인딩으로 주입하고, 조절해서 사용합니다.
+에디터의 활성화 여부를 결정합니다. 외부에서 바인딩으로 주입하고, 조절해서 사용합니다.
 
 <br>
 
 `disabledPlaceholder`
 
-TextEditor가 비활성화 되어있을 때, 사용자에게 안내하기 위한 문구입니다.
+에디터가 비활성화 되어있을 때, 사용자에게 안내하기 위한 문구입니다.
 
 <br>
 
-`regRxpUse`
+`regExpUse`
 
 ```swift
 public enum RegExpUse {
@@ -150,6 +151,6 @@ public enum RegExpUse {
 
 사용하지 않으면 `none`, 사용한다면 `use`를 전달합니다. 
 
-`pattern`은 매칭에 사용할 정규식 패턴, isMatched는 외부에서 주입하고 활용할 바인딩 값입니다. 
+`pattern`은 매칭에 사용할 정규식 패턴, `isMatched`는 외부에서 주입하고 활용할 바인딩 값입니다. 
 
-텍스트가 업데이트 될 때마다 정규식을 검사해서 isMatched에 전달된 바인딩 변수를 자동으로 업데이트합니다.
+텍스트가 업데이트 될 때마다 정규식을 검사해서 `isMatched`에 전달된 바인딩 변수를 자동으로 업데이트합니다.
