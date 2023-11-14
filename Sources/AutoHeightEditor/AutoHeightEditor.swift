@@ -11,9 +11,6 @@ public struct AutoHeightEditor: View {
     private let hasBorder: Bool
     private let disabledInformationText: String
     
-    private let regExpPattern: String?
-    private let isPatternMatched: Binding<Bool>?
-    
     // MARK: Initializer에서 계산을 통해 결정되는 프로퍼티
     private let maxLineCount: CGFloat
     private let uiFont: UIFont
@@ -21,23 +18,6 @@ public struct AutoHeightEditor: View {
     
     @State private var currentTextEditorHeight: CGFloat = 0
     @State private var maxTextWidth: CGFloat = 0
-    
-    // 정규식 프로퍼티와 현재 텍스트가 일치하는지 제공하는 인터페이스 프로퍼티
-    private var isMatched: Bool {
-        guard let regExpPattern else {
-            return true
-        }
-        
-        guard text.wrappedValue.isEmpty == false else {
-            return false
-        }
-        
-        let isMathed: Bool = text.wrappedValue.range(
-            of: regExpPattern,
-            options: .regularExpression) != nil
-        
-        return isMathed
-    }
     
     // MARK: - Initializer
     /// 파라미터 font = .body, lineSpace = 2 기본값 지정
@@ -49,8 +29,6 @@ public struct AutoHeightEditor: View {
         isEnabled: Binding<Bool>,
         hasBorder: Bool,
         disabledInformationText: String,
-        regExpPattern: String? = nil,
-        isPatternMatched: Binding<Bool>? = nil
     ) {
         // MARK: Required
         self.text = text
@@ -59,10 +37,6 @@ public struct AutoHeightEditor: View {
         self.isEnabled = isEnabled
         self.hasBorder = hasBorder
         self.disabledInformationText = disabledInformationText
-        
-        // MARK: Optional
-        self.regExpPattern = regExpPattern
-        self.isPatternMatched = isPatternMatched
         
         // MARK: Calculated
         self.maxLineCount = (maxLine < 1 ? 1 : maxLine).asFloat
@@ -147,8 +121,6 @@ private extension AutoHeightEditor {
     
     /// 바인딩 되어있는 isPatternMatched에 정규식 패턴 매치 여부를 업데이트합니다.
     func updatePatternMatched() {
-        if let isPatternMatched {
-            isPatternMatched.wrappedValue = isMatched
         }
     }
 }
