@@ -56,3 +56,22 @@
 <br>
 
 제작 배경에서 설명한 것처럼 **iOS 16**은 아직은 실무에 적용하기 부담스러운 버전이기 때문에, 이를 고려하여 `TextEditor`가 처음 나온 **iOS 14**부터 사용 가능하도록 구현했습니다.
+
+<br><br>
+
+# 사용 예시
+
+우선 기본적인 동작을 확인해보기 위해 `AutoHeightEditor`를 초기화 하겠습니다.
+
+```swift
+AutoHeightEditor(
+    text: $text,
+    maxLine: 3,
+    isEnabled: $isEnabled,
+    hasBorder: true,
+    disabledInformationText: "This editor has been disabled",
+    regExpUse: .none)
+```
+
+<img width="300" src="https://github.com/wontaeyoung/AutoHeightEditor/assets/45925685/4465d282-3bba-42c3-bd4f-45e8bfdb695f">
+
