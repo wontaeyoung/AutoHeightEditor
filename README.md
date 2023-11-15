@@ -315,7 +315,7 @@ AutoHeightEditor(
 
 아래 예시에서는 이메일 패턴을 전달해보겠습니다.
 
-```
+```swift
 AutoHeightEditor(
     text: $text,
     maxLine: 5,
@@ -328,3 +328,11 @@ AutoHeightEditor(
 ```
 
 <img width="300" src="https://github.com/wontaeyoung/AutoHeightEditor/assets/45925685/4e70d296-e5ca-464c-962e-0d09f01a8409">
+
+<br><br>
+
+# 라이센스
+
+`AutoHeightEditor`는 MIT 라이센스의 범위 내에서 사용 가능합니다.
+
+자세한 정보는 [라이센스](https://github.com/wontaeyoung/AutoHeightEditor/blob/main/LICENSE)에서 확인해주세요.
