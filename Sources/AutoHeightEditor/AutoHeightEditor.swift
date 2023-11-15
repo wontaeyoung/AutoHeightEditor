@@ -14,7 +14,7 @@ public struct AutoHeightEditor: View {
     private let lineSpace: CGFloat
     private let isEnabled: Binding<Bool>
     private let hasBorder: Bool
-    private let disabledInformationText: String
+    private let disabledPlaceholder: String
     private let regExpUse: RegExpUse
     
     // MARK: Initializer에서 계산을 통해 결정되는 프로퍼티
@@ -34,7 +34,7 @@ public struct AutoHeightEditor: View {
         maxLine: Int,
         isEnabled: Binding<Bool>,
         hasBorder: Bool,
-        disabledInformationText: String,
+        disabledPlaceholder: String,
         regExpUse: RegExpUse
     ) {
         // MARK: Required
@@ -43,7 +43,7 @@ public struct AutoHeightEditor: View {
         self.lineSpace = lineSpace
         self.isEnabled = isEnabled
         self.hasBorder = hasBorder
-        self.disabledInformationText = disabledInformationText
+        self.disabledPlaceholder = disabledPlaceholder
         self.regExpUse = regExpUse
         
         // MARK: Calculated
