@@ -96,55 +96,69 @@ public init (
 
 <br>
 
-`text: Binding<String>`
+```swift
+text: Binding<String>
+```
 
 에디터에 바인딩되는 입력 텍스트 문자열입니다. 외부에서 바인딩으로 주입해서 사용합니다.
 
 <br>
 
-`font: Font`
+```swift
+font: Font
+```
 
 텍스트에 적용할 폰트 타입입니다. default value로 `body`가 주입되고, 원하는 다른 폰트가 있다면 주입해서 사용 가능합니다.
 
 <br>
 
-`lineSpace: CGFloat`
+```swift
+lineSpace: CGFloat
+```
 
 텍스트 라인 사이에 들어가는 행 간격입니다. default value로 2가 주입되고, 원하는 다른 값이 있다면 주입해서 사용 가능합니다.
 
 <br>
 
-`maxLine: Int`
+```swift
+maxLine: Int
+```
 
 에디터의 높이가 증가하는 상한선 라인 수입니다. 입력 라인이 늘어날 때 `maxLine`까지 에디터 높이가 증가하고, 그 이후로는 늘어나지 않습니다.
 
 <br>
 
-`hasBorder: Bool`
+```swift
+hasBorder: Bool
+```
 
 기본으로 제공되는 `Stroke`의 사용 여부를 결정합니다. 기본 `Stroke`는 Gray 컬러에 20의 CornerRadius 값을 가지고 있습니다.
 
 <br>
 
-`isEnabled: Binding<Bool>`
+```swift
+isEnabled: Binding<Bool>
+```
 
 에디터의 활성화 여부를 결정합니다. 외부에서 바인딩으로 주입하고, 조절해서 사용합니다.
 
 <br>
 
-`disabledPlaceholder: String`
+```swift
+disabledPlaceholder: String
+```
 
 에디터가 비활성화 되어있을 때, 사용자에게 안내하기 위한 문구입니다.
 
 <br>
-
-`regExpUse: RegExpUse`
 
 ```swift
 public enum RegExpUse {
     case use(pattern: String, isMatched: Binding<Bool>)
     case none
 }
+
+regExpUse: RegExpUse
 ```
 
 정규식 매치 여부를 사용하는지를 결정하는 타입입니다. 
