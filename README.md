@@ -218,3 +218,45 @@ AutoHeightEditor(
 <img width="300" src="https://github.com/wontaeyoung/AutoHeightEditor/assets/45925685/dca01cbe-3065-4729-a0c8-3628398c2761">
 
 <br><br>
+
+### Border Stroke 커스텀
+
+`hasBorder`를 통해 기본으로 제공되는 테두리 사용 여부를 결정할 수 있습니다.
+
+기본 `Stroke`는 Gray 컬러에 20의 CornerRadius 값을 가지고 있습니다.
+
+아래 예시에서는 `hasBorder`의 값을 false로 전달하여 테두리를 삭제해보겠습니다.
+
+```swift
+AutoHeightEditor(
+    text: $text,
+    maxLine: 5,
+    hasBorder: false,
+    isEnabled: $isEnabled,
+    disabledPlaceholder: "This editor has been disabled",
+    regExpUse: .none)
+```
+
+<img width="300" src="https://github.com/wontaeyoung/AutoHeightEditor/assets/45925685/d18d2610-7a94-4270-a16e-2b311f8b7c57">
+
+<br><br>
+
+외부에서 `overlay`를 사용하여 원하는 디자인을 커스텀으로 작성할 수 있습니다.
+
+아래 예시에서는 기본 테두리를 삭제하고, overlay로 사각형 스타일의 테두리를 그려보겠습니다.
+
+```swift
+AutoHeightEditor(
+    text: $text,
+    maxLine: 5,
+    hasBorder: false,
+    isEnabled: $isEnabled,
+    disabledPlaceholder: "This editor has been disabled",
+    regExpUse: .none)
+.overlay {
+    Rectangle()
+        .stroke()
+}
+```
+
+<img width="300" src="https://github.com/wontaeyoung/AutoHeightEditor/assets/45925685/33dbfba0-1719-48c3-b23e-a093a4919aef">
