@@ -151,23 +151,45 @@ regExpUse: RegExpUse
 
 <br><br>
 
-# 사용 예시
+# 사용 가이드
 
 우선 기본적인 동작을 확인해보기 위해 `AutoHeightEditor`를 초기화 해보겠습니다.
 
-처음에는 1줄 높이로 시작하고, 입력된 텍스트에 따라 최대 3줄까지 높이가 동적으로 늘어납니다.
+처음에는 1줄 높이로 시작하고, 입력된 텍스트에 따라 최대 5줄까지 높이가 동적으로 늘어납니다.
+
+`\n`(개행문자)로 일어나는 줄바꿈 뿐만 아니라, 텍스트가 길어져서 자동으로 줄바꿈이 발생하는 순간도 감지해서 높이에 반영합니다.
 
 ```swift
 AutoHeightEditor(
     text: $text,
-    maxLine: 3,
+    maxLine: 5,
     hasBorder: true,
     isEnabled: $isEnabled,
     disabledPlaceholder: "This editor has been disabled",
     regExpUse: .none)
 ```
 
-<img width="300" src="https://github.com/wontaeyoung/AutoHeightEditor/assets/45925685/a1487cbf-8287-4088-b136-4e03515116d8">
+<img width="300" src="https://github.com/wontaeyoung/AutoHeightEditor/assets/45925685/4208a9ae-74aa-4819-a42d-f04a5065e282">
+
+<br><br>
+
+###  최대 라인 수 수정하기
+
+`maxLine`을 조정해서 최대 높이 라인 수를 결정할 수 있습니다.
+
+아래 예시에서는 `7`을 전달해서 7줄 높이까지 늘어나도록 해보겠습니다.
+
+```swift
+AutoHeightEditor(
+    text: $text,
+    maxLine: 7,
+    hasBorder: true,
+    isEnabled: $isEnabled,
+    disabledPlaceholder: "This editor has been disabled",
+    regExpUse: .none)
+```
+
+<img width="300" src="https://github.com/wontaeyoung/AutoHeightEditor/assets/45925685/71432a5c-0dbc-400e-b022-ec4ddf428a8d">
 
 <br><br>
 
@@ -186,13 +208,13 @@ AutoHeightEditor(
     text: $text,
     font: .title2,
     lineSpace: 10,
-    maxLine: 3,
+    maxLine: 5,
     hasBorder: true,
     isEnabled: $isEnabled,
     disabledPlaceholder: "This editor has been disabled",
     regExpUse: .none)
 ```
 
-<img width="300" src="https://github.com/wontaeyoung/AutoHeightEditor/assets/45925685/d4dbf9b3-6a98-41c4-b4c2-6695983ec638">
+<img width="300" src="https://github.com/wontaeyoung/AutoHeightEditor/assets/45925685/dca01cbe-3065-4729-a0c8-3628398c2761">
 
 <br><br>
