@@ -262,3 +262,39 @@ AutoHeightEditor(
 <img width="300" src="https://github.com/wontaeyoung/AutoHeightEditor/assets/45925685/33dbfba0-1719-48c3-b23e-a093a4919aef">
 
 <br><br>
+
+### 에디터 사용 활성화 관리
+
+`isEnabled`로 에디터의 터치 이벤트 수신 여부를 조정할 수 있습니다.
+
+외부에서 관리하기 위해 바인딩으로 전달받아 사용합니다.
+
+`disabled`되면 `disabledPlaceholder`에 전달된 텍스트를 플레이스홀더로 표시합니다.
+
+아래 예시에서는 isEnabled에 변수를 바인딩하고, Toggle로 외부에서 관리해보겠습니다.
+
+```swift
+AutoHeightEditor(
+    text: $text,
+    maxLine: 5,
+    hasBorder: true,
+    isEnabled: $isEnabled,
+    disabledPlaceholder: "This editor has been disabled",
+    regExpUse: .none)
+```
+
+<img width="300" src="https://github.com/wontaeyoung/AutoHeightEditor/assets/45925685/16185584-78db-4804-8134-f409e596f1d9">
+
+<br><br>
+
+만약에 따로 비활성화 하는 경우가 없다면 `.constant()`로 전달하고, `disabledPlaceholder`에는 빈 문자열을 전달하면 됩니다.
+
+```swift
+AutoHeightEditor(
+    text: $text,
+    maxLine: 5,
+    hasBorder: true,
+    isEnabled: .constant(true),
+    disabledPlaceholder: "",
+    regExpUse: .none)
+```
