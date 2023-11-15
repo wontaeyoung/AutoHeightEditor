@@ -32,8 +32,8 @@ public struct AutoHeightEditor: View {
         font: Font = .body,
         lineSpace: CGFloat = 2,
         maxLine: Int,
-        isEnabled: Binding<Bool>,
         hasBorder: Bool,
+        isEnabled: Binding<Bool>,
         disabledPlaceholder: String,
         regExpUse: RegExpUse
     ) {
