@@ -298,3 +298,33 @@ AutoHeightEditor(
     disabledPlaceholder: "",
     regExpUse: .none)
 ```
+
+<br><br>
+
+### 정규식 사용
+
+`regExpUse` 열거형으로 정규식 사용 여부를 결정할 수 있습니다.
+
+사용하지 않는다면 `none`, 사용한다면 `use`를 주입하면 됩니다.
+
+`use`에는 연관값으로 `pattern`과 `isMatched`를 전달할 수 있습니다.
+
+`pattern` 텍스트와 비교할 정규식 패턴 문자열입니다.
+
+`isMatched`는 외부에서 바인딩 받는 변수로, 내부에서 정규식 일치 여부를 업데이트 받습니다.
+
+아래 예시에서는 이메일 패턴을 전달해보겠습니다.
+
+```
+AutoHeightEditor(
+    text: $text,
+    maxLine: 5,
+    hasBorder: true,
+    isEnabled: $isEnabled,
+    disabledPlaceholder: "This editor has been disabled",
+    regExpUse: .use(
+        pattern: #"^[a-zA-Z0-9+-\_.]+@[a-zA-Z0-9-]+\.[a-zA-Z0-9-.]{2,3}+$"#,
+        isMatched: $isMatched))
+```
+
+<img width="300" src="https://github.com/wontaeyoung/AutoHeightEditor/assets/45925685/4e70d296-e5ca-464c-962e-0d09f01a8409">
