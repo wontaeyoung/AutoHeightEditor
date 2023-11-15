@@ -5,6 +5,10 @@
 [![License](https://img.shields.io/badge/License-MIT-yellow.svg)](https://github.com/wontaeyoung/AutoHeightEditor/blob/main/LICENSE)
 [![Github](https://img.shields.io/badge/Author-wontaeyoung-red.svg)](https://www.github.com/wontaeyoung)
 
+[Read English Translation](https://github.com/wontaeyoung/AutoHeightEditor/blob/main/README_ENG.md)
+
+<br>
+
 `AutoHeightEditor`는 Dynamic Height 기능이 있는 커스텀 `TextEditor` 라이브러리입니다. 
 
 <br>
@@ -336,3 +340,6 @@ AutoHeightEditor(
 `AutoHeightEditor`는 MIT 라이센스의 범위 내에서 사용 가능합니다.
 
 자세한 정보는 [라이센스](https://github.com/wontaeyoung/AutoHeightEditor/blob/main/LICENSE)에서 확인해주세요.
+
+
+<img width="300" src="">
