@@ -18,7 +18,7 @@ extension Int {
 }
 
 extension UIFont {
-    // MARK: Method - SwiftUI system Font를 UIFont 타입으로 변환하는 함수
+    /// SwiftUI Font를 UIFont 타입으로 변환합니다.
     static func fontToUIFont(from font: Font) -> UIFont {
         let style: UIFont.TextStyle
         
