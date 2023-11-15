@@ -259,9 +259,10 @@ AutoHeightEditor(
 }
 ```
 
-![AutoHeightEditor-테두리오버레이커스텀](https://github.com/wontaeyoung/AutoHeightEditor/assets/45925685/3655b408-08aa-4913-a403-2266af8f3b66)
+![AutoHeightEditor-테두리오버레이커스텀]()
 
 <img width="300" src="https://github.com/wontaeyoung/AutoHeightEditor/assets/45925685/33dbfba0-1719-48c3-b23e-a093a4919aef">
 
+[![Github](https://github.com/wontaeyoung/AutoHeightEditor/assets/45925685/3655b408-08aa-4913-a403-2266af8f3b66)](https://www.github.com/wontaeyoung)
 
 <br><br>
