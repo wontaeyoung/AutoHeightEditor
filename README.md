@@ -59,27 +59,7 @@
 
 <br><br>
 
-# 사용 예시
-
-우선 기본적인 동작을 확인해보기 위해 `AutoHeightEditor`를 초기화 해보겠습니다.
-
-```swift
-AutoHeightEditor(
-    text: $text,
-    maxLine: 3,
-    hasBorder: true,
-    isEnabled: $isEnabled,
-    disabledPlaceholder: "This editor has been disabled",
-    regExpUse: .none)
-```
-
-<img width="300" src="https://github.com/wontaeyoung/AutoHeightEditor/assets/45925685/4465d282-3bba-42c3-bd4f-45e8bfdb695f">
-
-<br>
-
-처음에는 1줄 높이로 시작하고, 입력된 텍스트에 따라 최대 라인까지 높이가 동적으로 늘어납니다.
-
-## 파라미터 리스트
+# 파라미터 리스트
 
 ```swift
 public init (
@@ -108,7 +88,7 @@ text: Binding<String>
 font: Font
 ```
 
-텍스트에 적용할 폰트 타입입니다. default value로 `body`가 주입되고, 원하는 다른 폰트가 있다면 주입해서 사용 가능합니다.
+텍스트에 적용할 폰트 타입입니다. Default Value로 `body`가 주입되고, 원하는 다른 폰트가 있다면 주입해서 사용 가능합니다.
 
 <br><br>
 
@@ -116,7 +96,7 @@ font: Font
 lineSpace: CGFloat
 ```
 
-텍스트 라인 사이에 들어가는 행 간격입니다. default value로 2가 주입되고, 원하는 다른 값이 있다면 주입해서 사용 가능합니다.
+텍스트 라인 사이에 들어가는 행 간격입니다. Default Value로 2가 주입되고, 원하는 다른 값이 있다면 주입해서 사용 가능합니다.
 
 <br><br>
 
@@ -168,3 +148,49 @@ regExpUse: RegExpUse
 `pattern`은 매칭에 사용할 정규식 패턴, `isMatched`는 외부에서 주입하고 활용할 바인딩 값입니다. 
 
 텍스트가 업데이트 될 때마다 정규식을 검사해서 `isMatched`에 전달된 바인딩 변수를 자동으로 업데이트합니다.
+
+<br><br>
+
+# 사용 예시
+
+우선 기본적인 동작을 확인해보기 위해 `AutoHeightEditor`를 초기화 해보겠습니다.
+
+```swift
+AutoHeightEditor(
+    text: $text,
+    maxLine: 3,
+    hasBorder: true,
+    isEnabled: $isEnabled,
+    disabledPlaceholder: "This editor has been disabled",
+    regExpUse: .none)
+```
+
+<img width="300" src="https://github.com/wontaeyoung/AutoHeightEditor/assets/45925685/4465d282-3bba-42c3-bd4f-45e8bfdb695f">
+
+<br>
+
+처음에는 1줄 높이로 시작하고, 입력된 텍스트에 따라 최대 라인까지 높이가 동적으로 늘어납니다.
+
+<br>
+
+### 폰트와 행 간격 수정하기
+
+`font`와 `lineSpace`에는 기본값으로 body와 2가 전달되고 있습니다. 
+
+원하는 값이 있다면 Default Value 대신에 새로운 값을 전달할 수 있습니다.
+
+> 현재 버전에서는 SwiftUI의 기본 `Font` 타입에 없는 값은 사용이 불가합니다. 폰트의 사이즈를 구하기 위해 내부에서 `UIFont`와 1:1 매핑을 하기 때문입니다.
+
+```swift
+AutoHeightEditor(
+    text: $text,
+    font: .title2,
+    lineSpace: 10,
+    maxLine: 3,
+    hasBorder: true,
+    isEnabled: $isEnabled,
+    disabledPlaceholder: "This editor has been disabled",
+    regExpUse: .none)
+```
+
+<br><br>
