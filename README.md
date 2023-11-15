@@ -155,6 +155,8 @@ regExpUse: RegExpUse
 
 우선 기본적인 동작을 확인해보기 위해 `AutoHeightEditor`를 초기화 해보겠습니다.
 
+처음에는 1줄 높이로 시작하고, 입력된 텍스트에 따라 최대 3줄까지 높이가 동적으로 늘어납니다.
+
 ```swift
 AutoHeightEditor(
     text: $text,
@@ -165,21 +167,19 @@ AutoHeightEditor(
     regExpUse: .none)
 ```
 
-<img width="300" src="https://github.com/wontaeyoung/AutoHeightEditor/assets/45925685/4465d282-3bba-42c3-bd4f-45e8bfdb695f">
+<img width="300" src="https://github.com/wontaeyoung/AutoHeightEditor/assets/45925685/a1487cbf-8287-4088-b136-4e03515116d8">
 
-<br>
-
-처음에는 1줄 높이로 시작하고, 입력된 텍스트에 따라 최대 라인까지 높이가 동적으로 늘어납니다.
-
-<br>
+<br><br>
 
 ### 폰트와 행 간격 수정하기
 
-`font`와 `lineSpace`에는 기본값으로 body와 2가 전달되고 있습니다. 
+> 현재 버전에서는 SwiftUI의 기본 `Font` 타입에 없는 값은 사용이 불가합니다. 폰트의 사이즈를 구하기 위해 내부에서 `UIFont`와 1:1 매핑을 하기 때문입니다.
+
+`font`와 `lineSpace`에는 기본값으로 `body`와 `2`가 전달되고 있습니다. 
 
 원하는 값이 있다면 Default Value 대신에 새로운 값을 전달할 수 있습니다.
 
-> 현재 버전에서는 SwiftUI의 기본 `Font` 타입에 없는 값은 사용이 불가합니다. 폰트의 사이즈를 구하기 위해 내부에서 `UIFont`와 1:1 매핑을 하기 때문입니다.
+아래 예시에서는 `title2`와 `10`을 전달해서 폰트 사이즈를 키우고 행 간격도 넓혀보겠습니다.
 
 ```swift
 AutoHeightEditor(
@@ -192,5 +192,7 @@ AutoHeightEditor(
     disabledPlaceholder: "This editor has been disabled",
     regExpUse: .none)
 ```
+
+<img width="300" src="https://github.com/wontaeyoung/AutoHeightEditor/assets/45925685/d4dbf9b3-6a98-41c4-b4c2-6695983ec638">
 
 <br><br>
