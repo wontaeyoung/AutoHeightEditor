@@ -332,6 +332,39 @@ AutoHeightEditor(
 
 <br><br>
 
+### **Focus Management**
+
+I chose not to include **`@FocusState`** within the package to keep the minimum supported version at **iOS 14** rather than raising it to **iOS 15**.
+
+After considering the trade-offs, I thought it more beneficial to lower the version support than to enhance usability by passing parameters.
+
+Users with project support versions of 15.0+ can manage focus externally using **`FocusState`**.
+
+```swift
+AutoHeightEditor(
+    text: $text,
+    maxLine: 5,
+    hasBorder: true,
+    isEnabled: $isEnabled,
+    disabledPlaceholder: "This editor has been disabled",
+    regExpUse: .none)
+.focused($isFocus)
+```
+
+<img width="300" src="https://github.com/wontaeyoung/AutoHeightEditor/assets/45925685/57bb4b94-5e73-4e69-ba99-a620b04b741c">
+
+<br><br>
+
+### **Dark Mode Support**
+
+The current version only supports basic dark mode adaptation by passing **`primary`** to the internal **`foregroundColor`**.
+
+The default provided **`Stroke`** color remains fixed at **`gray`** for both light and dark modes.
+
+<img width="300" src="https://github.com/wontaeyoung/AutoHeightEditor/assets/45925685/db6dff3d-ef0e-4929-864d-418c01b164a1">
+
+<br><br>
+
 # **License**
 
 **`AutoHeightEditor`** is available under the MIT license.
