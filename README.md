@@ -358,6 +358,16 @@ AutoHeightEditor(
 
 <br><br>
 
+### 다크모드 지원
+
+현재 버전에서는 내부 `foregroundColor`에서 `primary`를 전달해서 기본적인 다크모드 대응만 지원하고 있습니다.
+
+기본 제공 `Stroke` 색상은 라이트 / 다크 모두 `gray` 고정입니다.
+
+<img width="300" src="https://github.com/wontaeyoung/AutoHeightEditor/assets/45925685/db6dff3d-ef0e-4929-864d-418c01b164a1">
+
+<br><br>
+
 # 라이센스
 
 `AutoHeightEditor`는 MIT 라이센스의 범위 내에서 사용 가능합니다.
