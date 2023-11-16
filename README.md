@@ -373,3 +373,7 @@ AutoHeightEditor(
 `AutoHeightEditor`는 MIT 라이센스의 범위 내에서 사용 가능합니다.
 
 자세한 정보는 [라이센스](https://github.com/wontaeyoung/AutoHeightEditor/blob/main/LICENSE)에서 확인해주세요.
+
+<br>
+
+**작성자**: [원태영](https://github.com/wontaeyoung)
