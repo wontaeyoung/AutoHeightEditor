@@ -17,9 +17,9 @@
 
 이 라이브러리는 제가 프로젝트에 필요해서 직접 구현하게 된 커스텀 `TextEditor`입니다.
 
-제가 진행하고 있는 프로젝트에서 동적으로 높이가 조절되는 입력 인터페이스가 요구사항이었는데, iOS 16부터는 `TextField`의 `axis` 파라미터를 통해 Dynamic Height로 동작하는 입력 인터페이스를 쉽게 사용할 수 있습니다.
+제가 진행하고 있는 프로젝트에서 동적으로 높이가 조절되는 입력 인터페이스가 요구사항이었는데, **iOS 16**부터는 `TextField`의 `axis` 파라미터를 통해 Dynamic Height로 동작하는 입력 인터페이스를 쉽게 사용할 수 있습니다.
 
-하지만 프로젝트 최소 지원버전이 iOS 15.0+로 결정되었고, 여러 줄의 텍스트 입력을 받기 위해서는 `TextEditor`를 사용해야했습니다.
+하지만 프로젝트 최소 지원버전이 **iOS 15.0+**로 결정되었고, 여러 줄의 텍스트 입력을 받기 위해서는 `TextEditor`를 사용해야했습니다.
 
 기본 API로 제공되는 `TextEditor`를 사용해보신분들은 공감하시겠지만 지원하는 기능이 `TextField`에 비해 부족하고, 특히 별도로 높이를 지정해주지 않으면 차지할 수 있는 최대 높이를 가지게 됩니다.
 
@@ -335,11 +335,31 @@ AutoHeightEditor(
 
 <br><br>
 
+### 포커스 관리
+
+`@FocusState`를 패키지 내부에 포함시키면 최소 지원버전이 **iOS 15**로 올라가기 때문에 포함시키지 않았습니다.
+
+트레이드 오프를 생각해봤을 때, 파라미터로 전달받는 사용성보다 지원 버전을 낮추는게 더 메리트가 있다고 생각했습니다.
+
+프로젝트 지원 버전이 15.0+인 사용자분들은 외부에서 `FocusState`를 사용해서 포커스를 관리할 수 있습니다.
+
+```swift
+AutoHeightEditor(
+    text: $text,
+    maxLine: 5,
+    hasBorder: true,
+    isEnabled: $isEnabled,
+    disabledPlaceholder: "This editor has been disabled",
+    regExpUse: .none)
+.focused($isFocus)
+```
+
+<img width="300" src="https://github.com/wontaeyoung/AutoHeightEditor/assets/45925685/57bb4b94-5e73-4e69-ba99-a620b04b741c">
+
+<br><br>
+
 # 라이센스
 
 `AutoHeightEditor`는 MIT 라이센스의 범위 내에서 사용 가능합니다.
 
 자세한 정보는 [라이센스](https://github.com/wontaeyoung/AutoHeightEditor/blob/main/LICENSE)에서 확인해주세요.
-
-
-<img width="300" src="">
