@@ -370,3 +370,7 @@ The default provided **`Stroke`** color remains fixed at **`gray`** for both lig
 **`AutoHeightEditor`** is available under the MIT license.
 
 Please see the [License](https://github.com/wontaeyoung/AutoHeightEditor/blob/main/LICENSE) for more information.
+
+<br>
+
+**Author**: [Won Tae-young](https://github.com/wontaeyoung)
